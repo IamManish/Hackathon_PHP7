@@ -13,6 +13,8 @@ $out .= $this->getBlock($callback[0])->$callback[1]();
 with
 
 $out .= $this->getBlock($callback[0])->{$callback[1]}();
+
+
 1.2 app\code\core\Mage\ImportExport\Model\Import\Uploader.php:135
 This file effects Magento CSV importer. Override the file, then override _validateFile() function and replace the line 135 with replace
 
@@ -20,6 +22,8 @@ $params['object']->$params['method']($filePath);
 with
 
 $params['object']->{$params['method']}($filePath);
+
+
 1.3 app\code\core\Mage\ImportExport\Model\Export\Entity\Product\Type\Abstract.php:99
 This issue effect export functionality of Magento. Magento extends three classes from above abstract class, so root cause of error inside below class is the line#99 in above class.
 
@@ -31,6 +35,8 @@ $data['filter_options'] = $this->$data['options_method']();
 with
 
 $data['filter_options'] = $this->{$data['options_method']}();
+
+
 1.4 app\code\core\Mage\ImportExport\Model\Export\Entity\Customer.php:250
 This file effects export customers functionality. Override above file and change the line#250 as shown below
 
@@ -38,6 +44,8 @@ $data['filter_options'] = $this->$data['options_method']();
 with
 
 $data['filter_options'] = $this->{$data['options_method']}();
+
+
 1.5 lib\Varien\File\Uploader.php:259
 File uploading will not work. Magento extends Mage_Core_Model_File_Uploader from above class, so we need to override this class and rewrite _validateFile() function replace below line
 
@@ -45,6 +53,8 @@ $params['object']->$params['method']($this->_file['tmp_name']);
 with
 
 $params['object']->{$params['method']}($this->_file['tmp_name']);
+
+
 2. Type casting Issue
 
 2.1 app\code\core\Mage\Core\Model\Resource\Session.php:218
@@ -54,6 +64,8 @@ return $data;
 with
 
 return (string)$data;
+
+
 3. Incorrect Grand Total
 
 Incorrect totals are due to wrong sort order of subtotal, discount, shipping etc Correct the sort order by creating an extension and put below code in config.xml of the extension
